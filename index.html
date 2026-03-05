@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specchio Digitale</title>
+    <style>
+        body { 
+            margin: 0; background: #f4e4bc; /* Colore carta antica */ 
+            color: #333; font-family: 'Georgia', serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; min-height: 100vh; text-align: center;
+        }
+        .header { margin-bottom: 20px; }
+        .header h1 { font-size: 2rem; margin: 0; }
+        .fiaccola { width: 50px; margin-top: 10px; }
+        video { 
+            width: 85%; max-width: 400px; border-radius: 15px; 
+            transform: scaleX(-1); border: 5px solid #333; 
+            background: black;
+        }
+        .footer { margin-top: 20px; font-size: 1.5rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Come fecero i greci</h1>
+        <div class="fiaccola">🔥</div>
+    </div>
+
+    <video id="webcam" autoplay playsinline></video>
+
+    <div class="footer">Sei proprio tu!</div>
+
+    <script>
+        const video = document.getElementById('webcam');
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+            .then(stream => { video.srcObject = stream; })
+            .catch(err => { alert("Attiva la fotocamera per vedere il riflesso!"); });
+    </script>
+</body>
+</html>
